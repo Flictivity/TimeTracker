@@ -33,10 +33,10 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" VerticalAlignment="Center">
             <Button Height="100" Width="450" Margin="0,0,0,30" Click="EventNavigateTimeTrackPage">Счетчик времени</Button>
-            <Button Height="100" Width="450" Margin="0,0,0,30">Мой день</Button>
+            <Button Height="100" Width="450" Margin="0,0,0,30" Click="EventNavigateDayInfoPage">Мой день</Button>
             <Button Height="100" Width="450" Margin="0,0,0,30">Итог</Button>
             <Button Height="100" Width="450">Категории</Button>
         </StackPanel>
-        <Frame x:Name="MainFrame" Grid.Column="1" Background="White"></Frame>
+        <Frame x:Name="MainFrame" Grid.Column="1" Background="White" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
 </Window>

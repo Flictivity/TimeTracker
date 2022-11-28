@@ -5,8 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TimeTracker.PagesApp"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="TimeTrackPage">
+      d:DesignHeight="450" d:DesignWidth="800">
 
     <Page.Resources>
         <Style TargetType="Button">
@@ -56,13 +55,14 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
-            <TextBlock Height="50" FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center">Время</TextBlock>
-            <TextBlock x:Name="TblTimer" Height="50" FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center">00:00:00</TextBlock>
+            <TextBlock  FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center">Время</TextBlock>
+            <TextBlock x:Name="TblTimer" FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center">00:00:00</TextBlock>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Content="▷" Width="70" Height="70" Margin="10" Click="EventStartWatch"></Button>
                 <Button Content="▢" Width="70" Height="70" Margin="10" Click="EventStopWatch"></Button>
                 <Button Content="↻" Width="70" Height="70" Margin="10" Click="EventResetWatch"></Button>
             </StackPanel>
+            <TextBlock FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center">Категории</TextBlock>
             <ListBox x:Name="LbCategories" Height="100"></ListBox>
             <Button Content="Сохранить" Height="50" Margin="10" Click="EventSaveRecord"></Button>
         </StackPanel>

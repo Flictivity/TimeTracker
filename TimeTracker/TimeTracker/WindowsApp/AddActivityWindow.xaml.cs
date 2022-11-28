@@ -10,30 +10,30 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TimeTracker.PagesApp;
 
-namespace TimeTracker
+namespace TimeTracker.WindowsApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AddActivityWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddActivityWindow : Window
     {
-        public MainWindow()
+        public AddActivityWindow()
         {
             InitializeComponent();
         }
 
-        private void EventNavigateTimeTrackPage(object sender, RoutedEventArgs e)
+        private void EventCloseWindow(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new TimeTrackPage());
+            DialogResult = false;
+            this.Close();
         }
 
-        private void EventNavigateDayInfoPage(object sender, RoutedEventArgs e)
+        private void EventSaveActivity(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new DayInfoPage());
+            DialogResult = true;
+            MessageBox.Show("SS");
         }
     }
 }
