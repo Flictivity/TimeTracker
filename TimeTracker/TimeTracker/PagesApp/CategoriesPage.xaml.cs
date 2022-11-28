@@ -10,28 +10,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TimeTracker.WindowsApp;
 
-namespace TimeTracker.WindowsApp
+namespace TimeTracker.PagesApp
 {
     /// <summary>
-    /// Interaction logic for SaveRecordWindow.xaml
+    /// Interaction logic for CategoriesPage.xaml
     /// </summary>
-    public partial class SaveRecordWindow : Window
+    public partial class CategoriesPage : Page
     {
-        public SaveRecordWindow()
+        public CategoriesPage()
         {
             InitializeComponent();
         }
 
-        private void EventCansel(object sender, RoutedEventArgs e)
+        private void EventAddCategory(object sender, RoutedEventArgs e)
         {
-            this.Close();
-        }
-
-        private void EventSaveRecord(object sender, RoutedEventArgs e)
-        {
-
+            var addCategoryWindow = new AddCategoryWindow();
+            if(addCategoryWindow.ShowDialog() == true)
+            {
+                //refresh listview
+            }
         }
     }
 }

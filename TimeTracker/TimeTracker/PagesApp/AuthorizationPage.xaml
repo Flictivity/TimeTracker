@@ -1,0 +1,32 @@
+﻿<Page x:Class="TimeTracker.PagesApp.AuthorizationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TimeTracker.PagesApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800">
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="10*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="20">
+            <TextBlock FontFamily="Made GoodTime grotesk" FontSize="24">Логин</TextBlock>
+            <TextBox x:Name="TbLogin" FontFamily="Made GoodTime grotesk" FontSize="24" Margin="0,0,0,20"></TextBox>
+            <TextBlock FontFamily="Made GoodTime grotesk" FontSize="24">Пароль</TextBlock>
+            <TextBox x:Name="TbPassword" FontFamily="Made GoodTime grotesk" FontSize="24"></TextBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0">
+                <Button Height="50" FontSize="24" FontFamily="Made GoodTime grotesk" Background="#319ca9" BorderBrush="#319ca9" Margin="0,0,10,0" Click="EventAuthorization">Авторизироваться</Button>
+                <Button Height="50" FontSize="24" FontFamily="Made GoodTime grotesk" Background="#319ca9" BorderBrush="#319ca9" Margin="10,0,0,0" Click="EventNavigateToRegistrationPage">Зарегистрироваться</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

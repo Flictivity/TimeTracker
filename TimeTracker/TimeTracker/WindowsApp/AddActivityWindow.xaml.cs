@@ -24,7 +24,7 @@ namespace TimeTracker.WindowsApp
             InitializeComponent();
         }
 
-        private void EventCloseWindow(object sender, RoutedEventArgs e)
+        private void EventCansel(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
             this.Close();
@@ -32,8 +32,36 @@ namespace TimeTracker.WindowsApp
 
         private void EventSaveActivity(object sender, RoutedEventArgs e)
         {
+            DateTime timeBegin;
+            DateTime timeEnd;
+
+            if (TbtimeBegin.Text == "" || !DateTime.TryParse(TbtimeBegin.Text, out timeBegin))
+            {
+                MessageBox.Show("Неправильное время начала!");
+                return;
+            }
+            if(TbTimeEnd.Text == "" || !DateTime.TryParse(TbTimeEnd.Text, out timeEnd))
+            {
+                MessageBox.Show("Неправильное вермя окончания!");
+                return;
+            }
+
+            if(timeEnd < timeBegin)
+            {
+                MessageBox.Show("Время начала не может быть позже времени окончания");
+                return;
+            }
+
             DialogResult = true;
-            MessageBox.Show("SS");
+            MessageBox.Show("s");
+        }
+
+        private void DpDateBegin_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(DpDateBegin.SelectedDate != null)
+            {
+                TblDateEnd.Text = Convert.ToDateTime(DpDateBegin.Text).ToString("dd/MM/yyyy"); ;
+            }
         }
     }
 }

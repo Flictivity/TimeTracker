@@ -15,23 +15,26 @@ using System.Windows.Shapes;
 namespace TimeTracker.WindowsApp
 {
     /// <summary>
-    /// Interaction logic for SaveRecordWindow.xaml
+    /// Interaction logic for AddCategoryWindow.xaml
     /// </summary>
-    public partial class SaveRecordWindow : Window
+    public partial class AddCategoryWindow : Window
     {
-        public SaveRecordWindow()
+        public AddCategoryWindow()
         {
             InitializeComponent();
         }
 
         private void EventCansel(object sender, RoutedEventArgs e)
         {
+            DialogResult = false;
             this.Close();
         }
 
         private void EventSaveRecord(object sender, RoutedEventArgs e)
         {
-
+            //save into db
+            DialogResult = true;
+            this.Close();
         }
     }
 }

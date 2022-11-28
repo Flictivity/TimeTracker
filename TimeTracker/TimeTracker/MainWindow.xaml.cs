@@ -24,16 +24,7 @@ namespace TimeTracker
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void EventNavigateTimeTrackPage(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new TimeTrackPage());
-        }
-
-        private void EventNavigateDayInfoPage(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new DayInfoPage());
+            Frame.Navigate(new AuthorizationPage());
         }
     }
 }

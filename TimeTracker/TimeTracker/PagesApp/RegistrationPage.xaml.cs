@@ -10,26 +10,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TimeTracker.WindowsApp
+namespace TimeTracker.PagesApp
 {
     /// <summary>
-    /// Interaction logic for SaveRecordWindow.xaml
+    /// Interaction logic for RegistrationPage.xaml
     /// </summary>
-    public partial class SaveRecordWindow : Window
+    public partial class RegistrationPage : Page
     {
-        public SaveRecordWindow()
+        public RegistrationPage()
         {
             InitializeComponent();
         }
 
-        private void EventCansel(object sender, RoutedEventArgs e)
+        private void EventNavigateToAuthorizationPage(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            NavigationService.GoBack();
         }
 
-        private void EventSaveRecord(object sender, RoutedEventArgs e)
+        private void EventRegistration(object sender, RoutedEventArgs e)
         {
 
         }

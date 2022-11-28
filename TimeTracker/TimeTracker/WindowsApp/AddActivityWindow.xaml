@@ -4,52 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimeTracker.WindowsApp"
-        mc:Ignorable="d" Height="500" Width="800">
-    <Window.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="MADE GoodTime grotesk"/>
-            <Setter Property="FontSize" Value="24"/>
-        </Style>
-        <Style TargetType="TextBox">
-            <Setter Property="FontFamily" Value="MADE GoodTime grotesk"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="Foreground" Value="#727776"></Setter>
-        </Style>
-        <Style TargetType="ListBox">
-            <Setter Property="Background" Value="#4dd1c0"/>
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="ListBox">
-                            <Border CornerRadius="20"
-                                Background="{TemplateBinding Background}">
-
-                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-        <Style TargetType="Button">
-            <Setter Property="FontFamily" Value="MADE GoodTime Grotesk"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="#319ca9"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="20"
-                                Background="{TemplateBinding Background}">
-
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
+        mc:Ignorable="d" Height="800" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -63,34 +18,34 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <StackPanel Margin="5" HorizontalAlignment="Left">
-                    <TextBlock>Дата начала</TextBlock>
-                    <DatePicker x:Name="DpDateBegin" Height="30"></DatePicker>
+                <StackPanel Margin="0,0,10,10" HorizontalAlignment="Left">
+                    <TextBlock FontSize="24" FontFamily="MADE GoodTime Grotesk">Дата начала</TextBlock>
+                    <DatePicker x:Name="DpDateBegin" FontFamily="Made goodTime grotesk" FontSize="24" Foreground="#727776" SelectedDateChanged="DpDateBegin_SelectedDateChanged"></DatePicker>
                 </StackPanel>
-                <StackPanel Margin="5">
-                    <TextBlock>Время начала</TextBlock>
-                    <TextBox x:Name="TbtimeBegin"></TextBox>
+                <StackPanel Margin="10,0,0,10">
+                    <TextBlock FontSize="24" FontFamily="MADE GoodTime Grotesk">Время начала</TextBlock>
+                    <TextBox x:Name="TbtimeBegin" FontFamily="Made goodTime grotesk" FontSize="24" Foreground="#727776"></TextBox>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <StackPanel Margin="5">
-                    <TextBlock>Дата окончания</TextBlock>
-                    <TextBlock x:Name="TblDateEnd"></TextBlock>
+                <StackPanel Margin="0,10,10,0">
+                    <TextBlock FontSize="24" FontFamily="MADE GoodTime Grotesk">Дата окончания</TextBlock>
+                    <TextBlock x:Name="TblDateEnd" FontSize="24" Foreground="#727776"></TextBlock>
                 </StackPanel>
-                <StackPanel Margin="5">
-                    <TextBlock>Время окончания</TextBlock>
-                    <TextBox x:Name="TbTimeEnd"></TextBox>
+                <StackPanel Margin="10,10,0,0">
+                    <TextBlock FontSize="24" FontFamily="MADE GoodTime Grotesk">Время окончания</TextBlock>
+                    <TextBox x:Name="TbTimeEnd" FontFamily="Made goodTime grotesk" FontSize="24" Foreground="#727776"></TextBox>
                 </StackPanel>
             </StackPanel>
-            <TextBlock FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center">Категории</TextBlock>
-            <ListBox x:Name="LbCategories" Height="100"></ListBox>
+            <TextBlock FontSize="24" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="MADE GoodTime Grotesk">Категории</TextBlock>
+            <ListBox x:Name="LbCategories" Height="200" Background="#4dd1c0"></ListBox>
             <StackPanel Margin="0,10,0,10" Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Margin="0,0,10,0">Описание</TextBlock>
-                <TextBox x:Name="TbInfo" MaxLength="500" TextWrapping="Wrap" Width="500"></TextBox>
+                <TextBlock Margin="0,0,10,0" FontSize="24" FontFamily="MADE GoodTime Grotesk">Описание</TextBlock>
+                <TextBox x:Name="TbInfo" MaxLength="500" TextWrapping="Wrap" Width="500" FontFamily="Made goodTime grotesk" FontSize="24" Foreground="#727776"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Width="200" Height="50" Margin="0,0,5,0" Click="EventCloseWindow">Отмена</Button>
-                <Button Width="200" Height="50" Margin="5,0,0,0" Click="EventSaveActivity">Сохранить</Button>
+                <Button Width="200" Height="50" Background="#319ca9" BorderBrush="#319ca9" Margin="0,0,5,0" Click="EventCansel" FontFamily="Made goodTime grotesk" FontSize="24">Отмена</Button>
+                <Button Width="200" Height="50" Background="#319ca9" BorderBrush="#319ca9" Margin="5,0,0,0" Click="EventSaveActivity" FontFamily="Made goodTime grotesk" FontSize="24">Сохранить</Button>
             </StackPanel>
         </StackPanel>
     </Grid>

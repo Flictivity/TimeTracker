@@ -5,38 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimeTracker"
         mc:Ignorable="d" Height="1080" Width="1920" WindowStartupLocation="CenterScreen" WindowState="Maximized">
-
-    <Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="FontFamily" Value="MADE GoodTime Grotesk"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="#319ca9"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="20"
-                                Background="{TemplateBinding Background}">
-
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
-    <Grid Background="#4dd1c0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="3*"></ColumnDefinition>   
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" VerticalAlignment="Center">
-            <Button Height="100" Width="450" Margin="0,0,0,30" Click="EventNavigateTimeTrackPage">Счетчик времени</Button>
-            <Button Height="100" Width="450" Margin="0,0,0,30" Click="EventNavigateDayInfoPage">Мой день</Button>
-            <Button Height="100" Width="450" Margin="0,0,0,30">Итог</Button>
-            <Button Height="100" Width="450">Категории</Button>
-        </StackPanel>
-        <Frame x:Name="MainFrame" Grid.Column="1" Background="White" NavigationUIVisibility="Hidden"></Frame>
+    
+    <Grid>
+        <Frame x:Name="Frame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
