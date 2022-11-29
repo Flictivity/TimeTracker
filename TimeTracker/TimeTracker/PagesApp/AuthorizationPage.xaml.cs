@@ -27,8 +27,18 @@ namespace TimeTracker.PagesApp
 
         private void EventAuthorization(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("s");
-            NavigationService.Navigate(new MainPage());
+            if(TbLogin.Text == "" || PbPassword.Password == "")
+            {
+                MessageBox.Show("Некорректно введены данные!");
+                return;
+            }
+            var user = App.Connection.Logins.FirstOrDefault(x=> x.Login == TbLogin.Text && x.Password == PbPassword.Password);
+            if(user != null)
+            {
+                App.CurrentUser = user.Users;
+                MessageBox.Show("Авторизация прошла успешно.");
+                NavigationService.Navigate(new MainPage());
+            }
         }
 
         private void EventNavigateToRegistrationPage(object sender, RoutedEventArgs e)

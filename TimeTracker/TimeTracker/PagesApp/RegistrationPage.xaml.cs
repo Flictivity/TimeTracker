@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TimeTracker.AdoApp;
 
 namespace TimeTracker.PagesApp
 {
@@ -32,7 +33,26 @@ namespace TimeTracker.PagesApp
 
         private void EventRegistration(object sender, RoutedEventArgs e)
         {
+            if(TbName.Text == "" || TbLogin.Text == "" || PbPassword.Password == "")
+            {
+                MessageBox.Show("Некорректно введены данные!");
+                return;
+            }
+            Users newUser = new Users
+            {
+                Name = TbName.Text
+            };
+            Logins newLoginData = new Logins
+            {
+                Login = TbLogin.Text,
+                Password = PbPassword.Password,
+                Users = newUser
+            };
 
+            App.Connection.Logins.Add(newLoginData);
+            App.Connection.SaveChanges();
+            MessageBox.Show("Регистрация прошла успешно.");
+            NavigationService.Navigate(new AuthorizationPage());
         }
     }
 }

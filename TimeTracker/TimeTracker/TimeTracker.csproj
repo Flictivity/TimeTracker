@@ -40,6 +40,12 @@
     <ApplicationIcon>calendar_clock_schedule_icon-icons.com_51085.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=2.0.9.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.2.0.9\lib\net462\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -47,7 +53,10 @@
       <HintPath>..\packages\MaterialDesignThemes.4.6.1\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -66,6 +75,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdoApp\Categories.cs">
+      <DependentUpon>TimeTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdoApp\Logins.cs">
+      <DependentUpon>TimeTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdoApp\Records.cs">
+      <DependentUpon>TimeTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdoApp\TimeTrackerModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TimeTrackerModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdoApp\TimeTrackerModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TimeTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdoApp\TimeTrackerModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TimeTrackerModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="AdoApp\Users.cs">
+      <DependentUpon>TimeTrackerModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PagesApp\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
@@ -89,6 +125,9 @@
     </Compile>
     <Compile Include="WindowsApp\SaveRecordWindow.xaml.cs">
       <DependentUpon>SaveRecordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsApp\TimerStopMessageWindow.xaml.cs">
+      <DependentUpon>TimerStopMessageWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +181,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowsApp\TimerStopMessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PagesApp\DayInfoPage.xaml.cs">
@@ -167,6 +210,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="AdoApp\TimeTrackerModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TimeTrackerModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="AdoApp\TimeTrackerModel.edmx.diagram">
+      <DependentUpon>TimeTrackerModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -179,7 +229,21 @@
   <ItemGroup>
     <Resource Include="calendar_clock_schedule_icon-icons.com_51085.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="AdoApp\TimeTrackerModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TimeTrackerModel.Context.cs</LastGenOutput>
+      <DependentUpon>TimeTrackerModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="AdoApp\TimeTrackerModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TimeTrackerModel.edmx</DependentUpon>
+      <LastGenOutput>TimeTrackerModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.6.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.6.1\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

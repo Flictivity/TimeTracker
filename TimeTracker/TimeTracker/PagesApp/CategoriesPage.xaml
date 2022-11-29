@@ -21,7 +21,8 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
             <TextBlock FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center">Категории</TextBlock>
-            <ListBox x:Name="LbCategories" Height="200" Background="#4dd1c0"></ListBox>
+            <ListBox x:Name="LbCategories" Height="200" Background="#4dd1c0" FontFamily="Made GoodTime grotesk" FontSize="24" Foreground="White" DisplayMemberPath="Name">
+            </ListBox>
             <Button Height="50" Margin="0,10,0,0" Background="#319ca9" BorderBrush="#319ca9" FontFamily="Made goodTime grotesk" FontSize="24" Click="EventAddCategory">Добавить</Button>
         </StackPanel>
     </Grid>

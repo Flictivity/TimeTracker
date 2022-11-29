@@ -20,7 +20,7 @@
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
             <TextBlock FontFamily="Made goodTime grotesk" FontSize="24">Название</TextBlock>
             <TextBlock x:Name="TblCategory" FontFamily="Made goodTime grotesk" FontSize="24"></TextBlock>
-            <TextBox x:Name="TbInfo" TextWrapping="Wrap" MaxLength="200" FontFamily="Made goodTime grotesk" FontSize="24" Foreground="#727776" Margin="0,0,0,10"></TextBox>
+            <TextBox x:Name="TbInfo" TextWrapping="Wrap" MaxLength="50" FontFamily="Made goodTime grotesk" FontSize="24" Foreground="#727776" Margin="0,0,0,10"></TextBox>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Height="50" Width="200" Background="#319ca9" BorderBrush="#319ca9" FontFamily="Made goodTime grotesk" FontSize="24" Margin="10" Click="EventCansel">Отмена</Button>
                 <Button Height="50" Width="200" Background="#319ca9" BorderBrush="#319ca9" FontFamily="Made goodTime grotesk" FontSize="24" Margin="10" Click="EventSaveRecord">Сохранить</Button>

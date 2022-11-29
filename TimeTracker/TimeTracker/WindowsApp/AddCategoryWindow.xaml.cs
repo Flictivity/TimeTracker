@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TimeTracker.AdoApp;
 
 namespace TimeTracker.WindowsApp
 {
@@ -32,7 +33,16 @@ namespace TimeTracker.WindowsApp
 
         private void EventSaveRecord(object sender, RoutedEventArgs e)
         {
-            //save into db
+            if(TbInfo.Text == "")
+            {
+                MessageBox.Show("Не введено название категории!");
+            }
+            Categories newCategory = new Categories
+            {
+                Name = TbInfo.Text
+            };
+            App.Connection.Categories.Add(newCategory);
+            App.Connection.SaveChanges();
             DialogResult = true;
             this.Close();
         }

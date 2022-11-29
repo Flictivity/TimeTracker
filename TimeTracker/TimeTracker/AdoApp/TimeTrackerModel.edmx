@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TimeTrackerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="IdCategory" />
+          </Key>
+          <Property Name="IdCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Logins">
+          <Key>
+            <PropertyRef Name="IdLogin" />
+          </Key>
+          <Property Name="IdLogin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Records">
+          <Key>
+            <PropertyRef Name="IdRecord" />
+          </Key>
+          <Property Name="IdRecord" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="TimeStart" Type="time" Precision="7" Nullable="false" />
+          <Property Name="TimeEnd" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Info" Type="text" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Logins_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Logins" Type="Self.Logins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Logins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Records" Type="Self.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="IdCategory" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Records" Type="Self.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TimeTrackerModelStoreContainer">
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logins" EntityType="Self.Logins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Records" EntityType="Self.Records" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Logins_Users" Association="Self.FK_Logins_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Logins" EntitySet="Logins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_Categories" Association="Self.FK_Records_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_Users" Association="Self.FK_Records_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TimeTrackerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="IdCategory" />
+          </Key>
+          <Property Name="IdCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Records" Relationship="TimeTrackerModel.FK_Records_Categories" FromRole="Categories" ToRole="Records" />
+        </EntityType>
+        <EntityType Name="Logins">
+          <Key>
+            <PropertyRef Name="IdLogin" />
+          </Key>
+          <Property Name="IdLogin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Logins_Users" FromRole="Logins" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Logins" Relationship="Self.FK_Logins_Users" FromRole="Users" ToRole="Logins" />
+          <NavigationProperty Name="Records" Relationship="TimeTrackerModel.FK_Records_Users" FromRole="Users" ToRole="Records" />
+        </EntityType>
+        <Association Name="FK_Logins_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Logins" Type="Self.Logins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Logins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TimeTrackerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Categories" />
+          <EntitySet Name="Logins" EntityType="Self.Logins" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Logins_Users" Association="Self.FK_Logins_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Logins" EntitySet="Logins" />
+          </AssociationSet>
+          <EntitySet Name="Records" EntityType="TimeTrackerModel.Records" />
+          <AssociationSet Name="FK_Records_Categories" Association="TimeTrackerModel.FK_Records_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_Users" Association="TimeTrackerModel.FK_Records_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Records">
+          <Key>
+            <PropertyRef Name="IdRecord" />
+          </Key>
+          <Property Name="IdRecord" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="TimeStart" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="TimeEnd" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Categories" Relationship="TimeTrackerModel.FK_Records_Categories" FromRole="Records" ToRole="Categories" />
+          <NavigationProperty Name="Users" Relationship="TimeTrackerModel.FK_Records_Users" FromRole="Records" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_Records_Categories">
+          <End Type="TimeTrackerModel.Categories" Role="Categories" Multiplicity="1" />
+          <End Type="TimeTrackerModel.Records" Role="Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="IdCategory" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_Users">
+          <End Type="TimeTrackerModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="TimeTrackerModel.Records" Role="Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TimeTrackerModelStoreContainer" CdmEntityContainer="TimeTrackerEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="TimeTrackerModel.Categories">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="TimeTrackerModel.Logins">
+              <MappingFragment StoreEntitySet="Logins">
+                <ScalarProperty Name="IdLogin" ColumnName="IdLogin" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TimeTrackerModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Records">
+            <EntityTypeMapping TypeName="TimeTrackerModel.Records">
+              <MappingFragment StoreEntitySet="Records">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="TimeEnd" ColumnName="TimeEnd" />
+                <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="IdRecord" ColumnName="IdRecord" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using TimeTracker.AdoApp;
 using TimeTracker.WindowsApp;
 
 namespace TimeTracker.PagesApp
@@ -32,6 +33,8 @@ namespace TimeTracker.PagesApp
             InitializeComponent();
             dt.Tick += new EventHandler(dt_Tick);
             dt.Interval = new TimeSpan(0, 0, 0, 0);
+
+            LbCategories.ItemsSource = App.Connection.Categories.ToList();
         }
         void dt_Tick(object sender, EventArgs e)
         {
@@ -46,6 +49,11 @@ namespace TimeTracker.PagesApp
 
         private void EventStartWatch(object sender, RoutedEventArgs e)
         {
+            if(LbCategories.SelectedItem == null)
+            {
+                MessageBox.Show("Не выбрана категория!");
+                return;
+            }
             sw.Start();
             dt.Start();
         }
@@ -54,8 +62,18 @@ namespace TimeTracker.PagesApp
         {
             if (sw.IsRunning)
             {
-                sw.Stop();
-                totalTime = sw.ElapsedTicks;
+                var messageWindow = new TimerStopMessageWindow();
+                if(messageWindow.ShowDialog() == true)
+                {
+                    var category = LbCategories.SelectedItem as Categories;
+                    var saveWindow = new SaveRecordWindow(sw, category);
+                    saveWindow.ShowDialog();
+                }
+                else
+                {
+                    sw.Reset();
+                    TblTimer.Text = "00:00:00";
+                }
             }
         }
 
@@ -67,8 +85,19 @@ namespace TimeTracker.PagesApp
 
         private void EventSaveRecord(object sender, RoutedEventArgs e)
         {
-            var saveWindow = new SaveRecordWindow();
-            saveWindow.ShowDialog();
+            var category = LbCategories.SelectedItem as Categories;
+            if(category == null)
+            {
+                MessageBox.Show("Не выбрана категория!");
+                return;
+            }
+
+            var saveWindow = new SaveRecordWindow(sw, category);
+            if(saveWindow.ShowDialog() == true)
+            {
+                sw.Reset();
+                TblTimer.Text = "00:00:00";
+            }
         }
     }
 }

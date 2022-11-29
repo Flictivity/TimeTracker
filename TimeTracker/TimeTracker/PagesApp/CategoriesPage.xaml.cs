@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TimeTracker.AdoApp;
 using TimeTracker.WindowsApp;
 
 namespace TimeTracker.PagesApp
@@ -21,9 +22,12 @@ namespace TimeTracker.PagesApp
     /// </summary>
     public partial class CategoriesPage : Page
     {
+        private List<Categories> _categories;
         public CategoriesPage()
         {
             InitializeComponent();
+            _categories = App.Connection.Categories.ToList();
+            LbCategories.ItemsSource = _categories;
         }
 
         private void EventAddCategory(object sender, RoutedEventArgs e)
@@ -31,7 +35,9 @@ namespace TimeTracker.PagesApp
             var addCategoryWindow = new AddCategoryWindow();
             if(addCategoryWindow.ShowDialog() == true)
             {
-                //refresh listview
+                _categories = App.Connection.Categories.ToList();
+                LbCategories.ItemsSource = null;
+                LbCategories.ItemsSource = _categories;
             }
         }
     }

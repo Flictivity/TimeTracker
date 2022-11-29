@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TimeTracker.AdoApp;
 
 namespace TimeTracker.WindowsApp
 {
@@ -19,19 +21,40 @@ namespace TimeTracker.WindowsApp
     /// </summary>
     public partial class SaveRecordWindow : Window
     {
-        public SaveRecordWindow()
+        Stopwatch _sw;
+        private Categories _category;
+        public SaveRecordWindow(Stopwatch sw, Categories category)
         {
             InitializeComponent();
+            _category = category;
+            _sw = sw;
         }
 
         private void EventCansel(object sender, RoutedEventArgs e)
         {
+            DialogResult = false;
             this.Close();
         }
 
         private void EventSaveRecord(object sender, RoutedEventArgs e)
         {
+            _sw.Stop();
+            var totalTime = _sw.Elapsed;
+            Records newRecord = new Records
+            {
+                Categories = _category,
+                Users = App.CurrentUser,
+                TimeEnd = DateTime.Now.TimeOfDay,
+                TimeStart = DateTime.Now.TimeOfDay - totalTime,
+                Time = totalTime,
+                Date = DateTime.Today,
+                Info = TbInfo.Text
+            };
+            App.Connection.Records.Add(newRecord);
+            App.Connection.SaveChanges();
 
+            DialogResult = true;
+            this.Close();
         }
     }
 }

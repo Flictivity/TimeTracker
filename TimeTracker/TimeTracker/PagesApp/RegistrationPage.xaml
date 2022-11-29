@@ -20,11 +20,11 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="20">
             <TextBlock FontFamily="Made GoodTime grotesk" FontSize="24">Имя</TextBlock>
-            <TextBox x:Name="TbName" FontFamily="Made GoodTime grotesk" FontSize="24" Margin="0,0,0,20"></TextBox>
+            <TextBox x:Name="TbName" FontFamily="Made GoodTime grotesk" FontSize="24" Margin="0,0,0,20" Foreground="#727776"></TextBox>
             <TextBlock FontFamily="Made GoodTime grotesk" FontSize="24">Логин</TextBlock>
-            <TextBox x:Name="TbLogin" FontFamily="Made GoodTime grotesk" FontSize="24" Margin="0,0,0,20"></TextBox>
+            <TextBox x:Name="TbLogin" FontFamily="Made GoodTime grotesk" FontSize="24" Margin="0,0,0,20" Foreground="#727776"></TextBox>
             <TextBlock FontFamily="Made GoodTime grotesk" FontSize="24">Пароль</TextBlock>
-            <PasswordBox x:Name="PbPassword" FontFamily="Made GoodTime grotesk" FontSize="24"></PasswordBox>
+            <PasswordBox x:Name="PbPassword" FontFamily="Made GoodTime grotesk" FontSize="24" Foreground="#727776"></PasswordBox>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0">
                 <Button Height="50" FontSize="24" FontFamily="Made GoodTime grotesk" Background="#319ca9" BorderBrush="#319ca9" Margin="0,0,10,0" Click="EventNavigateToAuthorizationPage">Авторизироваться</Button>
                 <Button Height="50" FontSize="24" FontFamily="Made GoodTime grotesk" Background="#319ca9" BorderBrush="#319ca9" Margin="10,0,0,0" Click="EventRegistration">Зарегистрироваться</Button>
