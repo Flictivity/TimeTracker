@@ -27,7 +27,6 @@ namespace TimeTracker.PagesApp
         DispatcherTimer dt = new DispatcherTimer();
         Stopwatch sw = new Stopwatch();
         string currentTime = string.Empty;
-        long totalTime;
         public TimeTrackPage()
         {
             InitializeComponent();

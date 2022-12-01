@@ -30,7 +30,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <StackPanel Margin="0,10,10,0">
                     <TextBlock FontSize="24" FontFamily="MADE GoodTime Grotesk">Дата окончания</TextBlock>
-                    <TextBlock x:Name="TblDateEnd" FontSize="24" Foreground="#727776"></TextBlock>
+                    <TextBlock x:Name="TblDateEnd" FontSize="24" Foreground="#727776" HorizontalAlignment="Right" TextAlignment="Right"></TextBlock>
                 </StackPanel>
                 <StackPanel Margin="10,10,0,0">
                     <TextBlock FontSize="24" FontFamily="MADE GoodTime Grotesk">Время окончания</TextBlock>
@@ -38,7 +38,7 @@
                 </StackPanel>
             </StackPanel>
             <TextBlock FontSize="24" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="MADE GoodTime Grotesk">Категории</TextBlock>
-            <ListBox x:Name="LbCategories" Height="200" Background="#4dd1c0"></ListBox>
+            <ListBox x:Name="LbCategories" Height="200" Background="#4dd1c0" FontFamily="Made goodTime grotesk" FontSize="24" Foreground="White" DisplayMemberPath="Name"></ListBox>
             <StackPanel Margin="0,10,0,10" Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Margin="0,0,10,0" FontSize="24" FontFamily="MADE GoodTime Grotesk">Описание</TextBlock>
                 <TextBox x:Name="TbInfo" MaxLength="500" TextWrapping="Wrap" Width="500" FontFamily="Made goodTime grotesk" FontSize="24" Foreground="#727776"></TextBox>

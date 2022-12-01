@@ -28,11 +28,12 @@
             <ListView x:Name="LvDayInfo" FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center" IsManipulationEnabled="False">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Title}" Width="200">Категория</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Company}" Width="300">Время</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=CategoryName}" Width="250">Категория</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Time, StringFormat={}{0:hh':'mm':'ss}}" Width="250">Общее время</GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
+            
         </StackPanel>
     </Grid>
 </Page>

@@ -102,6 +102,7 @@
     <Compile Include="AdoApp\Users.cs">
       <DependentUpon>TimeTrackerModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTO\ReportDto.cs" />
     <Compile Include="PagesApp\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TimeTracker.AdoApp;
 
 namespace TimeTracker.WindowsApp
 {
@@ -22,6 +23,7 @@ namespace TimeTracker.WindowsApp
         public AddActivityWindow()
         {
             InitializeComponent();
+            LbCategories.ItemsSource = App.Connection.Categories.ToList();
         }
 
         private void EventCansel(object sender, RoutedEventArgs e)
@@ -32,15 +34,15 @@ namespace TimeTracker.WindowsApp
 
         private void EventSaveActivity(object sender, RoutedEventArgs e)
         {
-            DateTime timeBegin;
-            DateTime timeEnd;
+            TimeSpan timeBegin;
+            TimeSpan timeEnd;
 
-            if (TbtimeBegin.Text == "" || !DateTime.TryParse(TbtimeBegin.Text, out timeBegin))
+            if (TbtimeBegin.Text == "" || !TimeSpan.TryParse(TbtimeBegin.Text, out timeBegin))
             {
                 MessageBox.Show("Неправильное время начала!");
                 return;
             }
-            if(TbTimeEnd.Text == "" || !DateTime.TryParse(TbTimeEnd.Text, out timeEnd))
+            if(TbTimeEnd.Text == "" || !TimeSpan.TryParse(TbTimeEnd.Text, out timeEnd))
             {
                 MessageBox.Show("Неправильное вермя окончания!");
                 return;
@@ -51,6 +53,32 @@ namespace TimeTracker.WindowsApp
                 MessageBox.Show("Время начала не может быть позже времени окончания");
                 return;
             }
+
+            if(DpDateBegin.SelectedDate == null)
+            {
+                MessageBox.Show("Не выбрана дата!");
+                return;
+            }
+
+            if(LbCategories.SelectedItem == null)
+            {
+                MessageBox.Show("Не выбрана категория!");
+                return;
+            }
+
+            var newRecord = new Records
+            {
+                Categories = LbCategories.SelectedItem as Categories,
+                Users = App.CurrentUser,
+                TimeStart = timeBegin,
+                TimeEnd = timeEnd,
+                Time = timeEnd - timeBegin,
+                Date = DpDateBegin.SelectedDate.Value,
+                Info = TbInfo.Text
+            };
+
+            App.Connection.Records.Add(newRecord);
+            App.Connection.SaveChanges();
 
             DialogResult = true;
             MessageBox.Show("s");
