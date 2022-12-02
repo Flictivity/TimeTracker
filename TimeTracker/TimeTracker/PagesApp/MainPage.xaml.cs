@@ -43,5 +43,10 @@ namespace TimeTracker.PagesApp
         {
             MainFrame.Navigate(new CategoriesPage());
         }
+
+        private void EventExit(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AuthorizationPage());
+        }
     }
 }

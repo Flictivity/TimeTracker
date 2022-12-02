@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimeTracker.WindowsApp"
-        mc:Ignorable="d" Height="800" Width="800" WindowStartupLocation="CenterScreen">
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" Height="900" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -30,7 +30,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <StackPanel Margin="0,10,10,0">
                     <TextBlock FontSize="24" FontFamily="MADE GoodTime Grotesk">Дата окончания</TextBlock>
-                    <TextBlock x:Name="TblDateEnd" FontSize="24" Foreground="#727776" HorizontalAlignment="Right" TextAlignment="Right"></TextBlock>
+                    <TextBlock x:Name="TblDateEnd" FontSize="24" FontFamily="Made goodTime grotesk" Foreground="#727776" HorizontalAlignment="Right" TextAlignment="Right"></TextBlock>
                 </StackPanel>
                 <StackPanel Margin="10,10,0,0">
                     <TextBlock FontSize="24" FontFamily="MADE GoodTime Grotesk">Время окончания</TextBlock>
@@ -38,14 +38,14 @@
                 </StackPanel>
             </StackPanel>
             <TextBlock FontSize="24" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="MADE GoodTime Grotesk">Категории</TextBlock>
-            <ListBox x:Name="LbCategories" Height="200" Background="#4dd1c0" FontFamily="Made goodTime grotesk" FontSize="24" Foreground="White" DisplayMemberPath="Name"></ListBox>
+            <ListBox x:Name="LbCategories" Height="400" FontFamily="Made goodTime grotesk" Background="AliceBlue" FontSize="24" DisplayMemberPath="Name"></ListBox>
             <StackPanel Margin="0,10,0,10" Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Margin="0,0,10,0" FontSize="24" FontFamily="MADE GoodTime Grotesk">Описание</TextBlock>
                 <TextBox x:Name="TbInfo" MaxLength="500" TextWrapping="Wrap" Width="500" FontFamily="Made goodTime grotesk" FontSize="24" Foreground="#727776"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Width="200" Height="50" Background="#319ca9" BorderBrush="#319ca9" Margin="0,0,5,0" Click="EventCansel" FontFamily="Made goodTime grotesk" FontSize="24">Отмена</Button>
-                <Button Width="200" Height="50" Background="#319ca9" BorderBrush="#319ca9" Margin="5,0,0,0" Click="EventSaveActivity" FontFamily="Made goodTime grotesk" FontSize="24">Сохранить</Button>
+                <Button Width="200" Height="50" Margin="0,0,5,0" Click="EventCansel" FontFamily="Made goodTime grotesk" FontSize="24">Отмена</Button>
+                <Button Width="200" Height="50" Margin="5,0,0,0" Click="EventSaveActivity" FontFamily="Made goodTime grotesk" FontSize="24">Сохранить</Button>
             </StackPanel>
         </StackPanel>
     </Grid>

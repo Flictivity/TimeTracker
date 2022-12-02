@@ -30,17 +30,14 @@ namespace TimeTracker.PagesApp
             currentDate = DateTime.Today;
             TblDate.Text = currentDate.ToString("dd/MM/yyyy");
 
-            FindReport();
-            LvDayInfo.ItemsSource = _reports;
+            FillReports();
         }
         private void EventIncrementDay(object sender, RoutedEventArgs e)
         {
             currentDate = currentDate.AddDays(1);
             TblDate.Text = currentDate.ToString("dd/MM/yyyy");
 
-            FindReport();
-            LvDayInfo.ItemsSource = null;
-            LvDayInfo.ItemsSource = _reports;
+            FillReports();
         }
 
         private void EventDecrementDay(object sender, RoutedEventArgs e)
@@ -48,20 +45,26 @@ namespace TimeTracker.PagesApp
             currentDate = currentDate.AddDays(-1);
             TblDate.Text = currentDate.ToString("dd/MM/yyyy");
 
-            FindReport();
-            LvDayInfo.ItemsSource = null;
-            LvDayInfo.ItemsSource = _reports;
+            FillReports();
         }
 
         private void FindReport()
         {
-            _reports = App.Connection.Records.Where(x => x.Date == currentDate)
+            _reports = App.Connection.Records.Where(x => x.Date == currentDate && x.UserId == App.CurrentUser.IdUser)
                 .GroupBy(z => z.Categories).ToList()
                 .Select(g => new ReportDto
                 {
                     CategoryName = g.Key.Name,
                     Time = new TimeSpan(g.Sum(a => a.Time.Ticks))
-                }).ToList();
+                })
+                .OrderBy(d => d.Time).ToList();
+        }
+
+        private void FillReports()
+        {
+            FindReport();
+            LvDayInfo.ItemsSource = null;
+            LvDayInfo.ItemsSource = _reports;
         }
     }
 }

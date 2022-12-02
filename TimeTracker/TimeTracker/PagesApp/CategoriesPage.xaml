@@ -5,7 +5,6 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TimeTracker.PagesApp"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
       Title="CategoriesPage">
 
     <Grid Background="white">
@@ -20,10 +19,10 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
-            <TextBlock FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center">Категории</TextBlock>
-            <ListBox x:Name="LbCategories" Height="200" Background="#4dd1c0" FontFamily="Made GoodTime grotesk" FontSize="24" Foreground="White" DisplayMemberPath="Name">
-            </ListBox>
-            <Button Height="50" Margin="0,10,0,0" Background="#319ca9" BorderBrush="#319ca9" FontFamily="Made goodTime grotesk" FontSize="24" Click="EventAddCategory">Добавить</Button>
+            <GroupBox Header="Категории" FontFamily="MADE GoodTime Grotesk" FontSize="24">
+                <ListBox x:Name="LbCategories" Height="400" Background="AliceBlue" FontFamily="Made GoodTime grotesk" FontSize="24" DisplayMemberPath="Name"/>
+            </GroupBox>
+            <Button Height="50" Margin="0,10,0,0" FontFamily="Made goodTime grotesk" FontSize="24" Click="EventAddCategory">Добавить</Button>
         </StackPanel>
     </Grid>
 </Page>

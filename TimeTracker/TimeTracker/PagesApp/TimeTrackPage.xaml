@@ -4,8 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TimeTracker.PagesApp"
-      mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="800">
+      mc:Ignorable="d">
     
     <Grid Background="White">
         <Grid.ColumnDefinitions>
@@ -22,13 +21,14 @@
             <TextBlock  FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center">Время</TextBlock>
             <TextBlock x:Name="TblTimer" FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#727776">00:00:00</TextBlock>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="▷" Width="70" Height="70" Margin="10" Click="EventStartWatch" Background="#319ca9" BorderBrush="#319ca9" FontFamily="Made goodTime grotesk" FontSize="24"></Button>
-                <Button Content="▢" Width="70" Height="70" Margin="10" Click="EventStopWatch" Background="#319ca9" BorderBrush="#319ca9" FontFamily="Made goodTime grotesk" FontSize="24"></Button>
-                <Button Content="↻" Width="70" Height="70" Margin="10" Click="EventResetWatch" Background="#319ca9" BorderBrush="#319ca9" FontFamily="Made goodTime grotesk" FontSize="24"></Button>
+                <Button Content="▷" Width="70" Height="70" Margin="10" Click="EventStartWatch" FontFamily="Made goodTime grotesk" FontSize="24"></Button>
+                <Button Content="▢" Width="70" Height="70" Margin="10" Click="EventStopWatch" FontFamily="Made goodTime grotesk" FontSize="24"></Button>
+                <Button Content="↻" Width="70" Height="70" Margin="10" Click="EventResetWatch" FontFamily="Made goodTime grotesk" FontSize="24"></Button>
             </StackPanel>
-            <TextBlock FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center">Категории</TextBlock>
-            <ListBox x:Name="LbCategories" Height="200" Background="#4dd1c0" FontFamily="Made goodTime grotesk" FontSize="24" Foreground="White" DisplayMemberPath="Name"></ListBox>
-            <Button Height="50" Margin="0,10,0,0" Click="EventSaveRecord" Background="#319ca9" BorderBrush="#319ca9" FontFamily="Made goodTime grotesk" FontSize="24">Сохранить</Button>
+            <GroupBox Header="Категории" FontFamily="MADE GoodTime Grotesk" FontSize="24">
+                <ListBox x:Name="LbCategories" Height="400" Background="AliceBlue" FontFamily="Made goodTime grotesk" FontSize="24" DisplayMemberPath="Name"></ListBox>
+            </GroupBox>
+            <Button Height="50" Margin="0,10,0,0" Click="EventSaveRecord" FontFamily="Made goodTime grotesk" FontSize="24">Сохранить</Button>
         </StackPanel>
     </Grid>
 </Page>

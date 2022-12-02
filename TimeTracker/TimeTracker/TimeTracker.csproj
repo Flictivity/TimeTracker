@@ -37,7 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>calendar_clock_schedule_icon-icons.com_51085.ico</ApplicationIcon>
+    <ApplicationIcon>ImagesApp\calendar_clock_schedule_icon-icons.com_51085.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -228,7 +228,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="calendar_clock_schedule_icon-icons.com_51085.ico" />
+    <Resource Include="ImagesApp\calendar_clock_schedule_icon-icons.com_51085.ico" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdoApp\TimeTrackerModel.Context.tt">
@@ -241,6 +241,7 @@
       <DependentUpon>TimeTrackerModel.edmx</DependentUpon>
       <LastGenOutput>TimeTrackerModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="ImagesApp\calendar_clock_schedule_icon-icons.com_51085.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

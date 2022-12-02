@@ -26,7 +26,7 @@ namespace TimeTracker.PagesApp
         public CategoriesPage()
         {
             InitializeComponent();
-            _categories = App.Connection.Categories.ToList();
+            _categories = App.Connection.Categories.Where(x => x.UserId == App.CurrentUser.IdUser).ToList();
             LbCategories.ItemsSource = _categories;
         }
 
@@ -35,7 +35,7 @@ namespace TimeTracker.PagesApp
             var addCategoryWindow = new AddCategoryWindow();
             if(addCategoryWindow.ShowDialog() == true)
             {
-                _categories = App.Connection.Categories.ToList();
+                _categories = App.Connection.Categories.Where(x => x.UserId == App.CurrentUser.IdUser).ToList();
                 LbCategories.ItemsSource = null;
                 LbCategories.ItemsSource = _categories;
             }

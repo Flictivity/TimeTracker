@@ -39,7 +39,8 @@ namespace TimeTracker.WindowsApp
             }
             Categories newCategory = new Categories
             {
-                Name = TbInfo.Text
+                Name = TbInfo.Text,
+                Users = App.CurrentUser
             };
             App.Connection.Categories.Add(newCategory);
             App.Connection.SaveChanges();

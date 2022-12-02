@@ -19,6 +19,7 @@ namespace TimeTracker.AdoApp
         {
             this.Logins = new HashSet<Logins>();
             this.Records = new HashSet<Records>();
+            this.Categories = new HashSet<Categories>();
         }
     
         public int IdUser { get; set; }
@@ -28,5 +29,7 @@ namespace TimeTracker.AdoApp
         public virtual ICollection<Logins> Logins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Records> Records { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Categories> Categories { get; set; }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimeTracker.WindowsApp"
         mc:Ignorable="d"
-        Title="TimerStopMessageWindow" Height="450" Width="800" ResizeMode="NoResize">
+        Title="TimerStopMessageWindow" Height="400" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -19,8 +19,8 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
             <TextBlock FontSize="24" FontFamily="MADE GoodTime Grotesk" TextWrapping="Wrap" TextAlignment="Center" Margin="0,0,0,10">Таймер будет остановлен. Хотите ли вы записать активность?</TextBlock>
-            <Button Width="400" Height="50" Background="#319ca9" BorderBrush="#319ca9" Margin="0,0,0,10" Click="EventSaveStop" FontFamily="Made goodTime grotesk" FontSize="24">Остановить и записать</Button>
-            <Button Width="400" Height="50" Background="#319ca9" BorderBrush="#319ca9" Margin="0,10,0,0" Click="EventStop" FontFamily="Made goodTime grotesk" FontSize="24">Остановить</Button>
+            <Button Width="400" Height="50" Margin="0,0,0,10" Click="EventSaveStop" FontFamily="Made goodTime grotesk" FontSize="24">Остановить и записать</Button>
+            <Button Width="400" Height="50" Margin="0,10,0,0" Click="EventStop" FontFamily="Made goodTime grotesk" FontSize="24">Остановить</Button>
         </StackPanel>
     </Grid>
 </Window>

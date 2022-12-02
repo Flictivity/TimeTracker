@@ -33,7 +33,7 @@ namespace TimeTracker.PagesApp
             dt.Tick += new EventHandler(dt_Tick);
             dt.Interval = new TimeSpan(0, 0, 0, 0);
 
-            LbCategories.ItemsSource = App.Connection.Categories.ToList();
+            LbCategories.ItemsSource = App.Connection.Categories.Where(x => x.UserId == App.CurrentUser.IdUser).ToList();
         }
         void dt_Tick(object sender, EventArgs e)
         {
@@ -66,7 +66,12 @@ namespace TimeTracker.PagesApp
                 {
                     var category = LbCategories.SelectedItem as Categories;
                     var saveWindow = new SaveRecordWindow(sw, category);
-                    saveWindow.ShowDialog();
+
+                    if (saveWindow.ShowDialog() == true)
+                    {
+                        sw.Reset();
+                        TblTimer.Text = "00:00:00";
+                    }
                 }
                 else
                 {

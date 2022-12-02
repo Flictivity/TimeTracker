@@ -22,8 +22,7 @@ namespace TimeTracker.PagesApp
             currentDate = DateTime.Today;
             TblDate.Text = currentDate.ToString("dd/MM/yyyy");
 
-            _records = App.Connection.Records.Where(x => x.Date == currentDate && x.UserId == App.CurrentUser.IdUser).ToList();
-            LvDayInfo.ItemsSource = _records;
+            FillRecords();
         }
 
         private void EventIncrementDay(object sender, RoutedEventArgs e)
@@ -31,9 +30,7 @@ namespace TimeTracker.PagesApp
             currentDate = currentDate.AddDays(1);
             TblDate.Text = currentDate.ToString("dd/MM/yyyy");
 
-            _records = App.Connection.Records.Where(x => x.Date == currentDate && x.UserId == App.CurrentUser.IdUser).ToList();
-            LvDayInfo.ItemsSource = null;
-            LvDayInfo.ItemsSource = _records;
+            FillRecords();
         }
 
         private void EventDecrementDay(object sender, RoutedEventArgs e)
@@ -41,9 +38,7 @@ namespace TimeTracker.PagesApp
             currentDate = currentDate.AddDays(-1);
             TblDate.Text = currentDate.ToString("dd/MM/yyyy");
 
-            _records = App.Connection.Records.Where(x => x.Date == currentDate && x.UserId == App.CurrentUser.IdUser).ToList();
-            LvDayInfo.ItemsSource = null;
-            LvDayInfo.ItemsSource = _records;
+            FillRecords();
         }
 
         private void EventAddActivity(object sender, RoutedEventArgs e)
@@ -51,15 +46,21 @@ namespace TimeTracker.PagesApp
             var addActivityWindow = new AddActivityWindow();
             if(addActivityWindow.ShowDialog() == true)
             {
-                _records = App.Connection.Records.Where(x => x.Date == currentDate && x.UserId == App.CurrentUser.IdUser).ToList();
-                LvDayInfo.ItemsSource = null;
-                LvDayInfo.ItemsSource = _records;
+                FillRecords();
             }
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return ((DateTime)value).ToString("hh:mm:ss");
+        }
+
+        private void FillRecords()
+        {
+            _records = App.Connection.Records.Where(x => x.Date == currentDate && x.UserId == App.CurrentUser.IdUser)
+                .OrderBy(z => z.TimeStart).ToList();
+            LvDayInfo.ItemsSource = null;
+            LvDayInfo.ItemsSource = _records;
         }
     }
 }

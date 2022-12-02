@@ -4,8 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TimeTracker.PagesApp"
-      mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="1200">
+      mc:Ignorable="d">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -20,11 +19,11 @@
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,20,0,0" VerticalAlignment="Center">
             <TextBlock FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0">Дата</TextBlock>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
-                <Button Content="◁" Height="60" Width="60" Click="EventDecrementDay" Background="#319ca9" BorderBrush="#319ca9"></Button>
+                <Button Content="◁" Height="60" Width="60" Click="EventDecrementDay"></Button>
                 <TextBlock x:Name="TblDate" FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0">2022.28.11</TextBlock>
-                <Button Content="▷" Height="60" Width="60" Click="EventIncrementDay" Background="#319ca9" BorderBrush="#319ca9"></Button>
+                <Button Content="▷" Height="60" Width="60" Click="EventIncrementDay"></Button>
             </StackPanel>
-            <ListView x:Name="LvDayInfo" FontFamily="MADE GoodTime Grotesk" FontSize="20" Height="300" >
+            <ListView x:Name="LvDayInfo" HorizontalContentAlignment="Center" FontFamily="MADE GoodTime Grotesk" FontSize="20" BorderThickness="1" BorderBrush="Black" Height="400" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=TimeStart, StringFormat={}{0:hh':'mm':'ss}}" Width="250">Время начала</GridViewColumn>
@@ -34,7 +33,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button Height="50" Margin="10" Click="EventAddActivity" Background="#319ca9" BorderBrush="#319ca9" FontFamily="Made goodTime grotesk" FontSize="24">Добавить</Button>
+            <Button Height="50" Margin="10" Click="EventAddActivity" FontFamily="Made goodTime grotesk" FontSize="24">Добавить</Button>
         </StackPanel>
     </Grid>
 </Page>

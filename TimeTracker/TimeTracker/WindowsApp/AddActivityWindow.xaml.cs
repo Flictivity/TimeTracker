@@ -23,7 +23,7 @@ namespace TimeTracker.WindowsApp
         public AddActivityWindow()
         {
             InitializeComponent();
-            LbCategories.ItemsSource = App.Connection.Categories.ToList();
+            LbCategories.ItemsSource = App.Connection.Categories.Where(x => x.UserId == App.CurrentUser.IdUser).ToList();
         }
 
         private void EventCansel(object sender, RoutedEventArgs e)

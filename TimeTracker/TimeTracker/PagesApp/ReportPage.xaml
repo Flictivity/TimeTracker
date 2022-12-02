@@ -4,8 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TimeTracker.PagesApp"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800">
+      mc:Ignorable="d">
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
@@ -21,11 +20,11 @@
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
             <TextBlock FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0">Дата</TextBlock>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
-                <Button Content="◁" Height="60" Width="60" Click="EventDecrementDay" Background="#319ca9" BorderBrush="#319ca9" FontFamily="MADE GoodTime Grotesk" FontSize="24"></Button>
+                <Button Content="◁" Height="60" Width="60" Click="EventDecrementDay" FontFamily="MADE GoodTime Grotesk" FontSize="24"></Button>
                 <TextBlock x:Name="TblDate" FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0">2022.28.11</TextBlock>
-                <Button Content="▷" Height="60" Width="60" Click="EventIncrementDay" Background="#319ca9" BorderBrush="#319ca9" FontFamily="MADE GoodTime Grotesk" FontSize="24"></Button>
+                <Button Content="▷" Height="60" Width="60" Click="EventIncrementDay" FontFamily="MADE GoodTime Grotesk" FontSize="24"></Button>
             </StackPanel>
-            <ListView x:Name="LvDayInfo" FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center" IsManipulationEnabled="False">
+            <ListView x:Name="LvDayInfo" FontFamily="MADE GoodTime Grotesk" Height="400" BorderThickness="1" BorderBrush="Black" FontSize="24" HorizontalAlignment="Center" IsManipulationEnabled="False">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=CategoryName}" Width="250">Категория</GridViewColumn>
