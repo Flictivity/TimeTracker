@@ -43,8 +43,15 @@ namespace TimeTracker.WindowsApp
                 Name = TbInfo.Text,
                 Users = App.CurrentUser
             };
-            App.Connection.Categories.Add(newCategory);
-            App.Connection.SaveChanges();
+            try
+            {
+                App.Connection.Categories.Add(newCategory);
+                App.Connection.SaveChanges();
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось сохранить запись!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             DialogResult = true;
             this.Close();
         }

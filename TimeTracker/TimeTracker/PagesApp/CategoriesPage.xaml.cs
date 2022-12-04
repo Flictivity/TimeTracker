@@ -35,9 +35,16 @@ namespace TimeTracker.PagesApp
             var addCategoryWindow = new AddCategoryWindow();
             if(addCategoryWindow.ShowDialog() == true)
             {
-                _categories = App.Connection.Categories.Where(x => x.UserId == App.CurrentUser.IdUser).ToList();
-                LbCategories.ItemsSource = null;
-                LbCategories.ItemsSource = _categories;
+                try
+                {
+                    _categories = App.Connection.Categories.Where(x => x.UserId == App.CurrentUser.IdUser).ToList();
+                    LbCategories.ItemsSource = null;
+                    LbCategories.ItemsSource = _categories;
+                }
+                catch
+                {
+                    MessageBox.Show("Не удалось загрузить данные!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error)
+                }
             }
         }
     }

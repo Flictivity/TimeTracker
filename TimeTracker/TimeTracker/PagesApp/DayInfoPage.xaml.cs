@@ -57,10 +57,17 @@ namespace TimeTracker.PagesApp
 
         private void FillRecords()
         {
-            _records = App.Connection.Records.Where(x => x.Date == currentDate && x.Categories.UserId == App.CurrentUser.IdUser)
+            try
+            {
+                _records = App.Connection.Records.Where(x => x.Date == currentDate && x.Categories.UserId == App.CurrentUser.IdUser)
                 .OrderBy(z => z.TimeStart).ToList();
-            LvDayInfo.ItemsSource = null;
-            LvDayInfo.ItemsSource = _records;
+                LvDayInfo.ItemsSource = null;
+                LvDayInfo.ItemsSource = _records;
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось загрузить данные!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error)
+            }
         }
     }
 }

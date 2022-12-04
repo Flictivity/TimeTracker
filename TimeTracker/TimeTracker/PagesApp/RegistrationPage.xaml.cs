@@ -49,10 +49,17 @@ namespace TimeTracker.PagesApp
                 Users = newUser
             };
 
-            App.Connection.Logins.Add(newLoginData);
-            App.Connection.SaveChanges();
-            MessageBox.Show("Регистрация прошла успешно.", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
-            NavigationService.Navigate(new AuthorizationPage());
+            try
+            {
+                App.Connection.Logins.Add(newLoginData);
+                App.Connection.SaveChanges();
+                MessageBox.Show("Регистрация прошла успешно.", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                NavigationService.Navigate(new AuthorizationPage());
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось выполнить регистрацию!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

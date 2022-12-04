@@ -50,7 +50,9 @@ namespace TimeTracker.PagesApp
 
         private void FindReport()
         {
-            _reports = App.Connection.Records.Where(x => x.Date == currentDate && x.Categories.UserId == App.CurrentUser.IdUser)
+            try
+            {
+                _reports = App.Connection.Records.Where(x => x.Date == currentDate && x.Categories.UserId == App.CurrentUser.IdUser)
                 .GroupBy(z => z.Categories).ToList()
                 .Select(g => new ReportDto
                 {
@@ -58,6 +60,11 @@ namespace TimeTracker.PagesApp
                     Time = new TimeSpan(g.Sum(a => a.Time.Ticks))
                 })
                 .OrderBy(d => d.Time).ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось загрузить данные!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void FillReports()

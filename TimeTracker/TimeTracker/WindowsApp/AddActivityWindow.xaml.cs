@@ -76,8 +76,15 @@ namespace TimeTracker.WindowsApp
                 Info = TbInfo.Text
             };
 
-            App.Connection.Records.Add(newRecord);
-            App.Connection.SaveChanges();
+            try
+            {
+                App.Connection.Records.Add(newRecord);
+                App.Connection.SaveChanges();
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось сохранить запись!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
             DialogResult = true;
             MessageBox.Show("Успешно.", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
