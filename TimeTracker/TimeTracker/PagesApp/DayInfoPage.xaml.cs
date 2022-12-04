@@ -66,7 +66,7 @@ namespace TimeTracker.PagesApp
             }
             catch
             {
-                MessageBox.Show("Не удалось загрузить данные!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error)
+                MessageBox.Show("Не удалось загрузить данные!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
