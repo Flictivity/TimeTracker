@@ -50,7 +50,7 @@ namespace TimeTracker.PagesApp
         {
             if(LbCategories.SelectedItem == null)
             {
-                MessageBox.Show("Не выбрана категория!");
+                MessageBox.Show("Не выбрана категория!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             sw.Start();
@@ -92,7 +92,7 @@ namespace TimeTracker.PagesApp
             var category = LbCategories.SelectedItem as Categories;
             if(category == null)
             {
-                MessageBox.Show("Не выбрана категория!");
+                MessageBox.Show("Не выбрана категория!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

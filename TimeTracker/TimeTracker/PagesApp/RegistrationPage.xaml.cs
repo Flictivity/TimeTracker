@@ -35,7 +35,7 @@ namespace TimeTracker.PagesApp
         {
             if(TbName.Text == "" || TbLogin.Text == "" || PbPassword.Password == "")
             {
-                MessageBox.Show("Некорректно введены данные!");
+                MessageBox.Show("Некорректно введены данные!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             Users newUser = new Users
@@ -51,7 +51,7 @@ namespace TimeTracker.PagesApp
 
             App.Connection.Logins.Add(newLoginData);
             App.Connection.SaveChanges();
-            MessageBox.Show("Регистрация прошла успешно.");
+            MessageBox.Show("Регистрация прошла успешно.", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
             NavigationService.Navigate(new AuthorizationPage());
         }
     }

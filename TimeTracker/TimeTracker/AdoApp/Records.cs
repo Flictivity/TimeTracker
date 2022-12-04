@@ -20,10 +20,8 @@ namespace TimeTracker.AdoApp
         public System.TimeSpan TimeEnd { get; set; }
         public System.TimeSpan Time { get; set; }
         public string Info { get; set; }
-        public int UserId { get; set; }
         public System.DateTime Date { get; set; }
     
         public virtual Categories Categories { get; set; }
-        public virtual Users Users { get; set; }
     }
 }

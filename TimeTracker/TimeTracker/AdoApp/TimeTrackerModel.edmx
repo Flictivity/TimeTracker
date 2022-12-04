@@ -32,7 +32,6 @@
           <Property Name="TimeEnd" Type="time" Precision="7" Nullable="false" />
           <Property Name="Time" Type="time" Precision="7" Nullable="false" />
           <Property Name="Info" Type="text" />
-          <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
@@ -78,18 +77,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Records_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Records" Type="Self.Records" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="IdUser" />
-            </Principal>
-            <Dependent Role="Records">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="TimeTrackerModelStoreContainer">
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Logins" EntityType="Self.Logins" Schema="dbo" store:Type="Tables" />
@@ -107,10 +94,6 @@
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Records" EntitySet="Records" />
           </AssociationSet>
-          <AssociationSet Name="FK_Records_Users" Association="Self.FK_Records_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Records" EntitySet="Records" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -119,23 +102,19 @@
         <EntityContainer Name="TimeTrackerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="TimeTrackerModel.Categories" />
           <EntitySet Name="Logins" EntityType="TimeTrackerModel.Logins" />
-          <EntitySet Name="Records" EntityType="TimeTrackerModel.Records" />
           <EntitySet Name="Users" EntityType="TimeTrackerModel.Users" />
-          <AssociationSet Name="FK_Records_Categories" Association="TimeTrackerModel.FK_Records_Categories">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="Records" EntitySet="Records" />
-          </AssociationSet>
           <AssociationSet Name="FK_Logins_Users" Association="TimeTrackerModel.FK_Logins_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Logins" EntitySet="Logins" />
           </AssociationSet>
-          <AssociationSet Name="FK_Records_Users" Association="TimeTrackerModel.FK_Records_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Records" EntitySet="Records" />
-          </AssociationSet>
           <AssociationSet Name="FK_Categories_Users" Association="TimeTrackerModel.FK_Categories_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Categories" EntitySet="Categories" />
+          </AssociationSet>
+          <EntitySet Name="Records" EntityType="TimeTrackerModel.Records" />
+          <AssociationSet Name="FK_Records_Categories" Association="TimeTrackerModel.FK_Records_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Records" EntitySet="Records" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Categories">
@@ -144,9 +123,9 @@
           </Key>
           <Property Name="IdCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Records" Relationship="TimeTrackerModel.FK_Records_Categories" FromRole="Categories" ToRole="Records" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="TimeTrackerModel.FK_Categories_Users" FromRole="Categories" ToRole="Users" />
+          <NavigationProperty Name="Records" Relationship="TimeTrackerModel.FK_Records_Categories" FromRole="Categories" ToRole="Records" />
         </EntityType>
         <EntityType Name="Logins">
           <Key>
@@ -158,21 +137,6 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="TimeTrackerModel.FK_Logins_Users" FromRole="Logins" ToRole="Users" />
         </EntityType>
-        <EntityType Name="Records">
-          <Key>
-            <PropertyRef Name="IdRecord" />
-          </Key>
-          <Property Name="IdRecord" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CategoryId" Type="Int32" Nullable="false" />
-          <Property Name="TimeStart" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="TimeEnd" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Categories" Relationship="TimeTrackerModel.FK_Records_Categories" FromRole="Records" ToRole="Categories" />
-          <NavigationProperty Name="Users" Relationship="TimeTrackerModel.FK_Records_Users" FromRole="Records" ToRole="Users" />
-        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="IdUser" />
@@ -180,21 +144,8 @@
           <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Logins" Relationship="TimeTrackerModel.FK_Logins_Users" FromRole="Users" ToRole="Logins" />
-          <NavigationProperty Name="Records" Relationship="TimeTrackerModel.FK_Records_Users" FromRole="Users" ToRole="Records" />
           <NavigationProperty Name="Categories" Relationship="TimeTrackerModel.FK_Categories_Users" FromRole="Users" ToRole="Categories" />
         </EntityType>
-        <Association Name="FK_Records_Categories">
-          <End Type="TimeTrackerModel.Categories" Role="Categories" Multiplicity="1" />
-          <End Type="TimeTrackerModel.Records" Role="Records" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categories">
-              <PropertyRef Name="IdCategory" />
-            </Principal>
-            <Dependent Role="Records">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Logins_Users">
           <End Type="TimeTrackerModel.Users" Role="Users" Multiplicity="1" />
           <End Type="TimeTrackerModel.Logins" Role="Logins" Multiplicity="*" />
@@ -203,18 +154,6 @@
               <PropertyRef Name="IdUser" />
             </Principal>
             <Dependent Role="Logins">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Records_Users">
-          <End Type="TimeTrackerModel.Users" Role="Users" Multiplicity="1" />
-          <End Type="TimeTrackerModel.Records" Role="Records" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="IdUser" />
-            </Principal>
-            <Dependent Role="Records">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -228,6 +167,31 @@
             </Principal>
             <Dependent Role="Categories">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Records">
+          <Key>
+            <PropertyRef Name="IdRecord" />
+          </Key>
+          <Property Name="IdRecord" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="TimeStart" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="TimeEnd" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Categories" Relationship="TimeTrackerModel.FK_Records_Categories" FromRole="Records" ToRole="Categories" />
+        </EntityType>
+        <Association Name="FK_Records_Categories">
+          <End Type="TimeTrackerModel.Categories" Role="Categories" Multiplicity="1" />
+          <End Type="TimeTrackerModel.Records" Role="Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="IdCategory" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="CategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -256,25 +220,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TimeTrackerModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Records">
             <EntityTypeMapping TypeName="TimeTrackerModel.Records">
               <MappingFragment StoreEntitySet="Records">
                 <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Info" ColumnName="Info" />
                 <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="TimeEnd" ColumnName="TimeEnd" />
                 <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="IdRecord" ColumnName="IdRecord" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="TimeTrackerModel.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

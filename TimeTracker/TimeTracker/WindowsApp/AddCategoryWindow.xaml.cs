@@ -35,7 +35,8 @@ namespace TimeTracker.WindowsApp
         {
             if(TbInfo.Text == "")
             {
-                MessageBox.Show("Не введено название категории!");
+                MessageBox.Show("Не введено название категории!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
             Categories newCategory = new Categories
             {

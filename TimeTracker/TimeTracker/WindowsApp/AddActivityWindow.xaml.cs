@@ -39,37 +39,36 @@ namespace TimeTracker.WindowsApp
 
             if (TbtimeBegin.Text == "" || !TimeSpan.TryParse(TbtimeBegin.Text, out timeBegin))
             {
-                MessageBox.Show("Неправильное время начала!");
+                MessageBox.Show("Неправильное время начала!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if(TbTimeEnd.Text == "" || !TimeSpan.TryParse(TbTimeEnd.Text, out timeEnd))
             {
-                MessageBox.Show("Неправильное вермя окончания!");
+                MessageBox.Show("Неправильное вермя окончания!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if(timeEnd < timeBegin)
             {
-                MessageBox.Show("Время начала не может быть позже времени окончания");
+                MessageBox.Show("Время начала не может быть позже времени окончания", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if(DpDateBegin.SelectedDate == null)
             {
-                MessageBox.Show("Не выбрана дата!");
+                MessageBox.Show("Не выбрана дата!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if(LbCategories.SelectedItem == null)
             {
-                MessageBox.Show("Не выбрана категория!");
+                MessageBox.Show("Не выбрана категория!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             var newRecord = new Records
             {
                 Categories = LbCategories.SelectedItem as Categories,
-                Users = App.CurrentUser,
                 TimeStart = timeBegin,
                 TimeEnd = timeEnd,
                 Time = timeEnd - timeBegin,
@@ -81,7 +80,8 @@ namespace TimeTracker.WindowsApp
             App.Connection.SaveChanges();
 
             DialogResult = true;
-            MessageBox.Show("s");
+            MessageBox.Show("Успешно.", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+            this.Close();
         }
 
         private void DpDateBegin_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

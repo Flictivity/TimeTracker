@@ -29,14 +29,14 @@ namespace TimeTracker.PagesApp
         {
             if(TbLogin.Text == "" || PbPassword.Password == "")
             {
-                MessageBox.Show("Некорректно введены данные!");
+                MessageBox.Show("Некорректно введены данные!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             var user = App.Connection.Logins.FirstOrDefault(x=> x.Login == TbLogin.Text && x.Password == PbPassword.Password);
             if(user != null)
             {
                 App.CurrentUser = user.Users;
-                MessageBox.Show("Авторизация прошла успешно.");
+                MessageBox.Show("Авторизация прошла успешно.", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                 NavigationService.Navigate(new MainPage());
             }
         }

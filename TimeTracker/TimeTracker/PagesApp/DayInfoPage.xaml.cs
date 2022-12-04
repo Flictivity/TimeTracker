@@ -57,7 +57,7 @@ namespace TimeTracker.PagesApp
 
         private void FillRecords()
         {
-            _records = App.Connection.Records.Where(x => x.Date == currentDate && x.UserId == App.CurrentUser.IdUser)
+            _records = App.Connection.Records.Where(x => x.Date == currentDate && x.Categories.UserId == App.CurrentUser.IdUser)
                 .OrderBy(z => z.TimeStart).ToList();
             LvDayInfo.ItemsSource = null;
             LvDayInfo.ItemsSource = _records;

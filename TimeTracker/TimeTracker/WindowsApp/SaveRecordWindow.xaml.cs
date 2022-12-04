@@ -43,7 +43,6 @@ namespace TimeTracker.WindowsApp
             Records newRecord = new Records
             {
                 Categories = _category,
-                Users = App.CurrentUser,
                 TimeEnd = DateTime.Now.TimeOfDay,
                 TimeStart = DateTime.Now.TimeOfDay - totalTime,
                 Time = totalTime,

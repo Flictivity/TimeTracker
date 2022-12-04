@@ -50,7 +50,7 @@ namespace TimeTracker.PagesApp
 
         private void FindReport()
         {
-            _reports = App.Connection.Records.Where(x => x.Date == currentDate && x.UserId == App.CurrentUser.IdUser)
+            _reports = App.Connection.Records.Where(x => x.Date == currentDate && x.Categories.UserId == App.CurrentUser.IdUser)
                 .GroupBy(z => z.Categories).ToList()
                 .Select(g => new ReportDto
                 {

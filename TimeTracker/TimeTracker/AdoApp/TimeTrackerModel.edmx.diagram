@@ -7,12 +7,11 @@
       <Diagram DiagramId="00a7257ee9df4bd7a0e4a8083be4a091" Name="Diagram1">
         <EntityTypeShape EntityType="TimeTrackerModel.Categories" Width="1.5" PointX="3.75" PointY="0.75" />
         <EntityTypeShape EntityType="TimeTrackerModel.Logins" Width="1.5" PointX="3" PointY="3.5" />
-        <EntityTypeShape EntityType="TimeTrackerModel.Records" Width="1.5" PointX="8.875" PointY="2.625" />
         <EntityTypeShape EntityType="TimeTrackerModel.Users" Width="1.5" PointX="0.75" PointY="3.625" />
-        <AssociationConnector Association="TimeTrackerModel.FK_Records_Categories" />
         <AssociationConnector Association="TimeTrackerModel.FK_Logins_Users" />
-        <AssociationConnector Association="TimeTrackerModel.FK_Records_Users" />
         <AssociationConnector Association="TimeTrackerModel.FK_Categories_Users" />
+        <EntityTypeShape EntityType="TimeTrackerModel.Records" Width="1.5" PointX="6" PointY="5" />
+        <AssociationConnector Association="TimeTrackerModel.FK_Records_Categories" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -24,8 +24,8 @@ namespace TimeTracker.AdoApp
         public string Name { get; set; }
         public int UserId { get; set; }
     
+        public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Records> Records { get; set; }
-        public virtual Users Users { get; set; }
     }
 }

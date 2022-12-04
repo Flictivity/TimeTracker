@@ -14,6 +14,7 @@
             <ColumnDefinition Width="3*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="17,0,17,0">
+            <Image Source="/ImagesApp/calendar_clock_schedule_icon-icons.com_51085.png" Width="250" Height="250"/>
             <Button Height="100" Margin="0,0,0,30" FontSize="24" FontFamily="Made GoodTime grotesk" Click="EventNavigateTimeTrackPage">Счетчик времени</Button>
             <Button Height="100" Margin="0,0,0,30" FontSize="24" FontFamily="Made GoodTime grotesk" Click="EventNavigateDayInfoPage">Мой день</Button>
             <Button Height="100" Margin="0,0,0,30" FontSize="24" FontFamily="Made GoodTime grotesk" Click="EventNavigateTotalInfoPage">Итог</Button>
