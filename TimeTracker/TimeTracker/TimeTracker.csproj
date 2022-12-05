@@ -102,7 +102,7 @@
     <Compile Include="AdoApp\Users.cs">
       <DependentUpon>TimeTrackerModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DTO\ReportDto.cs" />
+    <Compile Include="DTOApp\ReportDto.cs" />
     <Compile Include="PagesApp\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
@@ -123,6 +123,9 @@
     </Compile>
     <Compile Include="WindowsApp\AddCategoryWindow.xaml.cs">
       <DependentUpon>AddCategoryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsApp\DeleteRecordWindow.xaml.cs">
+      <DependentUpon>DeleteRecordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsApp\SaveRecordWindow.xaml.cs">
       <DependentUpon>SaveRecordWindow.xaml</DependentUpon>
@@ -175,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowsApp\AddCategoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsApp\DeleteRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

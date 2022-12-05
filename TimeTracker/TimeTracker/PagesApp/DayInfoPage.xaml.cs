@@ -21,6 +21,7 @@ namespace TimeTracker.PagesApp
             InitializeComponent();
             currentDate = DateTime.Today;
             TblDate.Text = currentDate.ToString("dd/MM/yyyy");
+            DpCurrentDate.SelectedDate = currentDate;
 
             FillRecords();
         }
@@ -29,6 +30,7 @@ namespace TimeTracker.PagesApp
         {
             currentDate = currentDate.AddDays(1);
             TblDate.Text = currentDate.ToString("dd/MM/yyyy");
+            DpCurrentDate.SelectedDate = currentDate;
 
             FillRecords();
         }
@@ -37,6 +39,7 @@ namespace TimeTracker.PagesApp
         {
             currentDate = currentDate.AddDays(-1);
             TblDate.Text = currentDate.ToString("dd/MM/yyyy");
+            DpCurrentDate.SelectedDate = currentDate;
 
             FillRecords();
         }
@@ -48,11 +51,6 @@ namespace TimeTracker.PagesApp
             {
                 FillRecords();
             }
-        }
-
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return ((DateTime)value).ToString("hh:mm:ss");
         }
 
         private void FillRecords()
@@ -67,6 +65,29 @@ namespace TimeTracker.PagesApp
             catch
             {
                 MessageBox.Show("Не удалось загрузить данные!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void DpCurrentDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            currentDate = DpCurrentDate.SelectedDate.Value;
+            TblDate.Text = currentDate.ToString("dd/MM/yyyy");
+
+            FillRecords();
+        }
+
+        private void LvDayInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(e.AddedItems.Count == 0)
+            {
+                return;
+            }
+            var window = new DeleteRecordWindow(LvDayInfo.SelectedItem as Records);
+            if(window.ShowDialog() == true)
+            {
+                MessageBox.Show("Успешно.");
+                LvDayInfo.ItemsSource = null;
+                FillRecords();
             }
         }
     }

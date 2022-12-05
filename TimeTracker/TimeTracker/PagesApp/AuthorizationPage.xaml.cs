@@ -33,12 +33,13 @@ namespace TimeTracker.PagesApp
                 return;
             }
             var user = App.Connection.Logins.FirstOrDefault(x=> x.Login == TbLogin.Text && x.Password == PbPassword.Password);
-            if(user != null)
+            if(user == null)
             {
-                App.CurrentUser = user.Users;
-                MessageBox.Show("Авторизация прошла успешно.", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
-                NavigationService.Navigate(new MainPage());
+                MessageBox.Show("Такой пользователь не найден", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            App.CurrentUser = user.Users;
+            MessageBox.Show("Авторизация прошла успешно.", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+            NavigationService.Navigate(new MainPage());
         }
 
         private void EventNavigateToRegistrationPage(object sender, RoutedEventArgs e)

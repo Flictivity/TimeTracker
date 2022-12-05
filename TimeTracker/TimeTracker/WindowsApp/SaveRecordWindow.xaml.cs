@@ -51,7 +51,8 @@ namespace TimeTracker.WindowsApp
             };
             try
             {
-
+                App.Connection.Records.Add(newRecord);
+                App.Connection.SaveChanges();
             }
             catch
             {

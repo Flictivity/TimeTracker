@@ -24,6 +24,7 @@ namespace TimeTracker.WindowsApp
         {
             InitializeComponent();
             LbCategories.ItemsSource = App.Connection.Categories.Where(x => x.UserId == App.CurrentUser.IdUser).ToList();
+            DpDateBegin.SelectedDate = DateTime.Now;
         }
 
         private void EventCansel(object sender, RoutedEventArgs e)

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TimeTracker.AdoApp;
-using TimeTracker.DTO;
+using TimeTracker.DTOApp;
 
 namespace TimeTracker.PagesApp
 {
@@ -29,6 +29,7 @@ namespace TimeTracker.PagesApp
             InitializeComponent();
             currentDate = DateTime.Today;
             TblDate.Text = currentDate.ToString("dd/MM/yyyy");
+            DpCurrentDate.SelectedDate = currentDate;
 
             FillReports();
         }
@@ -36,6 +37,7 @@ namespace TimeTracker.PagesApp
         {
             currentDate = currentDate.AddDays(1);
             TblDate.Text = currentDate.ToString("dd/MM/yyyy");
+            DpCurrentDate.SelectedDate = currentDate;
 
             FillReports();
         }
@@ -44,6 +46,7 @@ namespace TimeTracker.PagesApp
         {
             currentDate = currentDate.AddDays(-1);
             TblDate.Text = currentDate.ToString("dd/MM/yyyy");
+            DpCurrentDate.SelectedDate = currentDate;
 
             FillReports();
         }
@@ -72,6 +75,14 @@ namespace TimeTracker.PagesApp
             FindReport();
             LvDayInfo.ItemsSource = null;
             LvDayInfo.ItemsSource = _reports;
+        }
+
+        private void DpCurrentDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            currentDate = DpCurrentDate.SelectedDate.Value;
+            TblDate.Text = currentDate.ToString("dd/MM/yyyy");
+
+            FillReports();
         }
     }
 }

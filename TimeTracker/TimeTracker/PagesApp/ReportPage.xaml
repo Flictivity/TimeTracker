@@ -19,6 +19,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
             <TextBlock FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0">Дата</TextBlock>
+            <DatePicker x:Name ="DpCurrentDate" Width="150" Margin="0,10,0,10" SelectedDateChanged="DpCurrentDate_SelectedDateChanged"  FontFamily="Made goodTime grotesk" FontSize="24" Foreground="#727776"></DatePicker>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
                 <Button Content="◁" Height="60" Width="60" Click="EventDecrementDay" FontFamily="MADE GoodTime Grotesk" FontSize="24"></Button>
                 <TextBlock x:Name="TblDate" FontFamily="MADE GoodTime Grotesk" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0">2022.28.11</TextBlock>
