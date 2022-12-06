@@ -36,6 +36,7 @@ namespace TimeTracker.PagesApp
             if(user == null)
             {
                 MessageBox.Show("Такой пользователь не найден", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
             App.CurrentUser = user.Users;
             MessageBox.Show("Авторизация прошла успешно.", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);

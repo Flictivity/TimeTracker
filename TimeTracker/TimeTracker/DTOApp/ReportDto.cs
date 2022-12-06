@@ -9,6 +9,7 @@ namespace TimeTracker.DTOApp
     public class ReportDto
     {
         public string CategoryName { get; set; }
+        public int CategoryId { get; set; }
         public TimeSpan Time { get; set; }
     }
 }

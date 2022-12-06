@@ -24,22 +24,44 @@ namespace TimeTracker.PagesApp
     /// </summary>
     public partial class TimeTrackPage : Page
     {
-        DispatcherTimer dt = new DispatcherTimer();
-        Stopwatch sw = new Stopwatch();
         string currentTime = string.Empty;
         public TimeTrackPage()
         {
             InitializeComponent();
-            dt.Tick += new EventHandler(dt_Tick);
-            dt.Interval = new TimeSpan(0, 0, 0, 0);
+            App.Dt.Tick += new EventHandler(dt_Tick);
+            App.Dt.Interval = new TimeSpan(0, 0, 0, 0);
 
             LbCategories.ItemsSource = App.Connection.Categories.Where(x => x.UserId == App.CurrentUser.IdUser).ToList();
+
+            if(App.StopWatch.IsRunning)
+            {
+                LbCategories.SelectedItem = App.Category;
+            }
         }
         void dt_Tick(object sender, EventArgs e)
         {
-            if (sw.IsRunning)
+            var maxTs = new TimeSpan(23, 59, 59);
+
+            if (App.StopWatch.IsRunning)
             {
-                TimeSpan ts = sw.Elapsed;
+                TimeSpan ts = App.StopWatch.ElapsedTimeSpan;
+                if(ts >= maxTs)
+                {
+                    App.StopWatch.Stop();
+                    var category = LbCategories.SelectedItem as Categories;
+                    var saveWindow = new SaveRecordWindow(category);
+
+                    if (saveWindow.ShowDialog() == true)
+                    {
+                        App.StopWatch.Reset();
+                        TblTimer.Text = "00:00:00";
+                    }
+                    else
+                    {
+                        App.StopWatch.Reset();
+                        TblTimer.Text = "00:00:00";
+                    }
+                }
                 currentTime = String.Format("{0:00}:{1:00}:{2:00}",
                     ts.Hours,ts.Minutes, ts.Seconds);
                 TblTimer.Text = currentTime;
@@ -53,37 +75,45 @@ namespace TimeTracker.PagesApp
                 MessageBox.Show("Не выбрана категория!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            sw.Start();
-            dt.Start();
+            App.StartTime = DateTime.Now.TimeOfDay;
+            App.Category = LbCategories.SelectedItem as Categories;
+            App.StopWatch = new StopWatchWithOffset(new TimeSpan(0));
+            App.StopWatch.Start();
+            App.Dt.Start();
         }
 
         private void EventStopWatch(object sender, RoutedEventArgs e)
         {
-            if (sw.IsRunning)
+            if (App.StopWatch.IsRunning)
             {
                 var messageWindow = new TimerStopMessageWindow();
                 if(messageWindow.ShowDialog() == true)
                 {
                     var category = LbCategories.SelectedItem as Categories;
-                    var saveWindow = new SaveRecordWindow(sw, category);
+                    var saveWindow = new SaveRecordWindow(category);
 
                     if (saveWindow.ShowDialog() == true)
                     {
-                        sw.Reset();
+                        App.StopWatch.Reset();
                         TblTimer.Text = "00:00:00";
                     }
                 }
                 else
                 {
-                    sw.Reset();
+                    App.StopWatch.Reset();
                     TblTimer.Text = "00:00:00";
                 }
+            }
+            else
+            {
+                App.StopWatch.Reset();
+                TblTimer.Text = "00:00:00";
             }
         }
 
         private void EventResetWatch(object sender, RoutedEventArgs e)
         {
-            sw.Reset();
+            App.StopWatch.Reset();
             TblTimer.Text = "00:00:00";
         }
 
@@ -96,10 +126,10 @@ namespace TimeTracker.PagesApp
                 return;
             }
 
-            var saveWindow = new SaveRecordWindow(sw, category);
+            var saveWindow = new SaveRecordWindow(category);
             if(saveWindow.ShowDialog() == true)
             {
-                sw.Reset();
+                App.StopWatch.Reset();
                 TblTimer.Text = "00:00:00";
             }
         }

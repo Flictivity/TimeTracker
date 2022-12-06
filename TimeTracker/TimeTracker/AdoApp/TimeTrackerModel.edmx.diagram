@@ -12,6 +12,8 @@
         <AssociationConnector Association="TimeTrackerModel.FK_Categories_Users" />
         <EntityTypeShape EntityType="TimeTrackerModel.Records" Width="1.5" PointX="6" PointY="5" />
         <AssociationConnector Association="TimeTrackerModel.FK_Records_Categories" />
+        <EntityTypeShape EntityType="TimeTrackerModel.Sessions" Width="1.5" PointX="6" PointY="1" />
+        <AssociationConnector Association="TimeTrackerModel.FK_Sessions_Categories" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

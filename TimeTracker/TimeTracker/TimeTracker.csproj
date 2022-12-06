@@ -84,6 +84,9 @@
     <Compile Include="AdoApp\Records.cs">
       <DependentUpon>TimeTrackerModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AdoApp\Sessions.cs">
+      <DependentUpon>TimeTrackerModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="AdoApp\TimeTrackerModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -118,14 +121,12 @@
     <Compile Include="PagesApp\ReportPage.xaml.cs">
       <DependentUpon>ReportPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PagesApp\StopWatchWithOffset.cs" />
     <Compile Include="WindowsApp\AddActivityWindow.xaml.cs">
       <DependentUpon>AddActivityWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsApp\AddCategoryWindow.xaml.cs">
       <DependentUpon>AddCategoryWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WindowsApp\DeleteRecordWindow.xaml.cs">
-      <DependentUpon>DeleteRecordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsApp\SaveRecordWindow.xaml.cs">
       <DependentUpon>SaveRecordWindow.xaml</DependentUpon>
@@ -178,10 +179,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowsApp\AddCategoryWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WindowsApp\DeleteRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

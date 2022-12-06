@@ -34,6 +34,15 @@
           <Property Name="Info" Type="text" />
           <Property Name="Date" Type="date" Nullable="false" />
         </EntityType>
+        <EntityType Name="Sessions">
+          <Key>
+            <PropertyRef Name="IdSession" />
+          </Key>
+          <Property Name="IdSession" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="Time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="TimeStart" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="IdUser" />
@@ -77,10 +86,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Sessions_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="IdCategory" />
+            </Principal>
+            <Dependent Role="Sessions">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="TimeTrackerModelStoreContainer">
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Logins" EntityType="Self.Logins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Records" EntityType="Self.Records" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Categories_Users" Association="Self.FK_Categories_Users">
             <End Role="Users" EntitySet="Users" />
@@ -93,6 +115,10 @@
           <AssociationSet Name="FK_Records_Categories" Association="Self.FK_Records_Categories">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sessions_Categories" Association="Self.FK_Sessions_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Sessions" EntitySet="Sessions" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -116,6 +142,11 @@
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Records" EntitySet="Records" />
           </AssociationSet>
+          <EntitySet Name="Sessions" EntityType="TimeTrackerModel.Sessions" />
+          <AssociationSet Name="FK_Sessions_Categories" Association="TimeTrackerModel.FK_Sessions_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Sessions" EntitySet="Sessions" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Categories">
           <Key>
@@ -126,6 +157,7 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="TimeTrackerModel.FK_Categories_Users" FromRole="Categories" ToRole="Users" />
           <NavigationProperty Name="Records" Relationship="TimeTrackerModel.FK_Records_Categories" FromRole="Categories" ToRole="Records" />
+          <NavigationProperty Name="Sessions" Relationship="TimeTrackerModel.FK_Sessions_Categories" FromRole="Categories" ToRole="Sessions" />
         </EntityType>
         <EntityType Name="Logins">
           <Key>
@@ -195,6 +227,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Sessions">
+          <Key>
+            <PropertyRef Name="IdSession" />
+          </Key>
+          <Property Name="IdSession" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Categories" Relationship="TimeTrackerModel.FK_Sessions_Categories" FromRole="Sessions" ToRole="Categories" />
+          <Property Name="TimeStart" Type="Time" Nullable="false" Precision="7" />
+        </EntityType>
+        <Association Name="FK_Sessions_Categories">
+          <End Type="TimeTrackerModel.Categories" Role="Categories" Multiplicity="1" />
+          <End Type="TimeTrackerModel.Sessions" Role="Sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="IdCategory" />
+            </Principal>
+            <Dependent Role="Sessions">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -238,6 +292,16 @@
                 <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="IdRecord" ColumnName="IdRecord" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="TimeTrackerModel.Sessions">
+              <MappingFragment StoreEntitySet="Sessions">
+                <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="IdSession" ColumnName="IdSession" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

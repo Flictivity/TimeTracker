@@ -18,6 +18,7 @@ namespace TimeTracker.AdoApp
         public Categories()
         {
             this.Records = new HashSet<Records>();
+            this.Sessions = new HashSet<Sessions>();
         }
     
         public int IdCategory { get; set; }
@@ -27,5 +28,7 @@ namespace TimeTracker.AdoApp
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Records> Records { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sessions> Sessions { get; set; }
     }
 }

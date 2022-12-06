@@ -60,7 +60,8 @@ namespace TimeTracker.PagesApp
                 .Select(g => new ReportDto
                 {
                     CategoryName = g.Key.Name,
-                    Time = new TimeSpan(g.Sum(a => a.Time.Ticks))
+                    Time = new TimeSpan(g.Sum(a => a.Time.Ticks)),
+                    CategoryId = g.Key.IdCategory
                 })
                 .OrderBy(d => d.Time).ToList();
             }

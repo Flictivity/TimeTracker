@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TimeTracker.AdoApp;
+using TimeTracker.DTOApp;
 
 namespace TimeTracker.WindowsApp
 {
@@ -21,13 +22,11 @@ namespace TimeTracker.WindowsApp
     /// </summary>
     public partial class SaveRecordWindow : Window
     {
-        Stopwatch _sw;
         private Categories _category;
-        public SaveRecordWindow(Stopwatch sw, Categories category)
+        public SaveRecordWindow(Categories category)
         {
             InitializeComponent();
             _category = category;
-            _sw = sw;
         }
 
         private void EventCansel(object sender, RoutedEventArgs e)
@@ -38,28 +37,54 @@ namespace TimeTracker.WindowsApp
 
         private void EventSaveRecord(object sender, RoutedEventArgs e)
         {
-            _sw.Stop();
-            var totalTime = _sw.Elapsed;
+            App.StopWatch.Stop();
+
+            var totalTime = App.StopWatch.ElapsedTimeSpan;
             Records newRecord = new Records
             {
                 Categories = _category,
                 TimeEnd = DateTime.Now.TimeOfDay,
-                TimeStart = DateTime.Now.TimeOfDay - totalTime,
+                TimeStart = App.StartTime,
                 Time = totalTime,
                 Date = DateTime.Today,
                 Info = TbInfo.Text
             };
             try
             {
+                var reports = App.Connection.Records.Where(x => x.Date == DateTime.Today && x.Categories.UserId == App.CurrentUser.IdUser)
+                .GroupBy(z => z.Categories).ToList()
+                .Select(g => new ReportDto
+                {
+                    CategoryName = g.Key.Name,
+                    CategoryId = g.Key.IdCategory,
+                    Time = new TimeSpan(g.Sum(a => a.Time.Ticks))
+                })
+                .OrderBy(d => d.Time).ToList();
+
+                var record = reports
+                    .FirstOrDefault(x => x.CategoryId == newRecord.Categories.IdCategory);
+
+                if(record != null)
+                {
+                    if ((newRecord.Time + record.Time)
+                    > new TimeSpan(23, 59, 59))
+                    {
+                        MessageBox.Show("Невозможно проводить активность больше 24 часов в сутки!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                }
+
                 App.Connection.Records.Add(newRecord);
                 App.Connection.SaveChanges();
+                DialogResult = true;
+                this.Close();
             }
             catch
             {
                 MessageBox.Show("Не удалось сохранить запись!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                DialogResult = false;
+                this.Close();
             }
-            DialogResult = true;
-            this.Close();
         }
     }
 }

@@ -29,5 +29,6 @@ namespace TimeTracker.AdoApp
         public virtual DbSet<Logins> Logins { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Records> Records { get; set; }
+        public virtual DbSet<Sessions> Sessions { get; set; }
     }
 }

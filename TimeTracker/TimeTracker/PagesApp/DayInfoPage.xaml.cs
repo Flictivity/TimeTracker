@@ -75,20 +75,5 @@ namespace TimeTracker.PagesApp
 
             FillRecords();
         }
-
-        private void LvDayInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if(e.AddedItems.Count == 0)
-            {
-                return;
-            }
-            var window = new DeleteRecordWindow(LvDayInfo.SelectedItem as Records);
-            if(window.ShowDialog() == true)
-            {
-                MessageBox.Show("Успешно.");
-                LvDayInfo.ItemsSource = null;
-                FillRecords();
-            }
-        }
     }
 }

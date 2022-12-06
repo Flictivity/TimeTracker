@@ -12,8 +12,9 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="17,0,17,0">
+        <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Margin="17,0,17,0">
             <Image Source="/ImagesApp/calendar_clock_schedule_icon-icons.com_51085.png" Width="250" Height="250"/>
             <Button Height="100" Margin="0,0,0,30" FontSize="24" FontFamily="Made GoodTime grotesk" Click="EventNavigateTimeTrackPage">Счетчик времени</Button>
             <Button Height="100" Margin="0,0,0,30" FontSize="24" FontFamily="Made GoodTime grotesk" Click="EventNavigateDayInfoPage">Мой день</Button>
@@ -21,6 +22,15 @@
             <Button Height="100" Margin="0,0,0,30" FontSize="24" FontFamily="Made GoodTime grotesk" Click="EventNavigateCategoriesPage">Категории</Button>
             <Button Height="100" FontSize="24" FontFamily="Made GoodTime grotesk" Click="EventExit">Выход</Button>
         </StackPanel>
-        <Frame x:Name="MainFrame" Grid.Column="1" Background="White" NavigationUIVisibility="Hidden"></Frame>
+        <Frame x:Name="MainFrame" Grid.Column="1" Grid.Row="1" Background="White" NavigationUIVisibility="Hidden"></Frame>
+        <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ProgressBar x:Name="PbProgressValue" Width="100" Height="100" Margin="0,0,0,10" Foreground="White" Maximum="86400" Style="{DynamicResource MaterialDesignCircularProgressBar}">
+                <ProgressBar.LayoutTransform>
+                    <ScaleTransform CenterX="0" CenterY="0" ScaleX="3" ScaleY="3"/>
+                </ProgressBar.LayoutTransform>
+            </ProgressBar>
+            <TextBlock x:Name="TblTimer" FontSize="24" FontFamily="Made GoodTime grotesk" Foreground="White" VerticalAlignment="Center" Margin="0,0,0,10" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="TblCategory" FontSize="24" FontFamily="Made GoodTime grotesk" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        </StackPanel>
     </Grid>
 </Page>

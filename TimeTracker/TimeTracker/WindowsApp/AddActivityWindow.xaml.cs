@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TimeTracker.AdoApp;
+using TimeTracker.DTOApp;
 
 namespace TimeTracker.WindowsApp
 {
@@ -79,6 +80,24 @@ namespace TimeTracker.WindowsApp
 
             try
             {
+                var reports = App.Connection.Records.Where(x => x.Date == DateTime.Today && x.Categories.UserId == App.CurrentUser.IdUser)
+                .GroupBy(z => z.Categories).ToList()
+                .Select(g => new ReportDto
+                {
+                    CategoryName = g.Key.Name,
+                    CategoryId = g.Key.IdCategory,
+                    Time = new TimeSpan(g.Sum(a => a.Time.Ticks))
+                })
+                .OrderBy(d => d.Time).ToList();
+
+                if ((newRecord.Time + reports.
+                    FirstOrDefault(x => x.CategoryId == newRecord.Categories.IdCategory).Time)
+                    > new TimeSpan(23, 59, 59))
+                {
+                    MessageBox.Show("Невозможно проводить активность больше 24 часов в сутки!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 App.Connection.Records.Add(newRecord);
                 App.Connection.SaveChanges();
             }
